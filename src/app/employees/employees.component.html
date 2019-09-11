@@ -1,0 +1,58 @@
+
+ 
+ <mat-form-field>
+    <mat-label>Enter Category Name</mat-label>
+    <input type="text" matInput [(ngModel)]="cat1" autocomplete="off"><br>
+  </mat-form-field>
+  <br>
+  <br>
+  &nbsp;<button class="btn btn-success" (click)="funInsertCat()">Insert</button>
+  <br>
+<mat-form-field style="width: 75%">
+    
+    <input type="text" matInput placeholder="Search" [(ngModel)]="search">
+</mat-form-field> 
+<table class="table table-stripped">
+    <thead>
+        <th>ID</th>
+        <th>CATNAME</th>
+        <th>STATUS</th>
+        <th>MODIFY</th>
+    </thead>
+    <tbody>
+        <tr *ngFor='let x of getdata |filter:search | paginate:{itemsPerPage:10,currentPage:pno}'>
+            <ng-container *ngIf="temp!=x._id;else sedata">
+            <td>{{x._id}}</td>
+            <td>{{x.catname}}</td>
+            <td>
+                <span *ngIf="x.status==1;else act">
+                    Active
+                </span>        
+                  <ng-template #act>Inactive</ng-template>
+            </td>
+            <td>
+                <button class="btn btn-danger" (click)="funedit(x)">Edit</button>
+            </td>
+            </ng-container>
+        </tr>
+    </tbody>
+</table>
+<ng-template #sedata>
+    <th>{{varselecteddata._id}}</th>
+    <td>
+      <input type="text" class="form-control"[(ngModel)]="varselecteddata.catname">
+    </td>    
+      <td>
+          <select [(ngModel)]="varselecteddata.status" class="form-control">
+            <option value="1">Active</option>
+            <option value="0">InActive</option>
+          </select>
+        </td>
+    <td>
+      <input type="button" class="btn btn-success" value="Save" (click)="update_fun()">
+      <input type="button" class="btn btn-danger" value="Cancel" (click)="this.temp=0" >
+    </td>
+  </ng-template>
+<div style="text-align: center"><pagination-controls  (pageChange)="pno=$event">
+</pagination-controls>
+</div>

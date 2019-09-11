@@ -1,0 +1,139 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#"  data-toggle="modal" data-target="#loginbox">Login</a>
+      </li>
+      <li class="nav-item" >
+        <a class="nav-link">Employee</a>
+      </li>
+      <li class="nav-item" >
+        <a class="nav-link" data-toggle="modal" data-target="#myModal">Registration</a>
+      </li>
+      
+    </ul>
+  </div>
+</nav>
+ <!-- The Modal -->
+ <div class="modal fade" id="loginbox">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    
+      <!-- Modal Header -->
+      <div class="modal-header">
+         <h4 class="modal-title text-danger">User Login</h4>
+        <button type="button" class="close" data-dismiss="modal">x</button>
+      </div>
+      
+      <!-- Modal body -->
+      <form action="" method="POST" id="validuser">
+      <div class="modal-body">
+        <mat-form-field appearance="outline" style="width:467px !important">
+          <mat-label>Enter Username</mat-label>
+          <input type="email" pattern="^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$" #ct="ngModel" matInput placeholder="username" name="uname" [(ngModel)]="username">
+          </mat-form-field><br>
+          <p *ngIf='ct.invalid' style="color: red">* please enter valid email Id</p>
+        <mat-form-field appearance="outline" style="width:467px !important">
+          <mat-label>Enter Password</mat-label>
+          <input type="password"  matInput placeholder="Placeholder" style="width:200px" name="pwd" [(ngModel)]="pwd">
+        </mat-form-field>
+        
+      </div>
+    </form>
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger"  (click)="login_function()">Login</button>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<!-- modal for Registration and there validation -->
+<!-- The Modal -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Registration Page</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <i class="fa fa-user" style="margin-right: 10px;font-size: 20px"></i>
+        <mat-form-field style="margin-right: 50px">
+          <input type="text" matInput placeholder="First Name" name="key" [(ngModel)]="fn" required >
+       </mat-form-field>
+       <mat-form-field>
+        <input type="text" matInput placeholder="Last Name" name="key" [(ngModel)]="ln" required>
+      </mat-form-field>
+      <br>
+      Gender:
+      
+      <mat-radio-group [(ngModel)]="gender" name="gender" required>
+        <mat-radio-button style="margin-right: 20px" value="male">
+          Male
+        </mat-radio-button>
+        <mat-radio-button  value="female">
+          Female
+        </mat-radio-button>
+      </mat-radio-group>
+    
+      <br>
+      <i class="fa fa-mobile" style="margin-right: 10px;font-size: 20px"></i>
+      <mat-form-field style="width:80%">
+<input type="text" matInput placeholder="Enter Mobile Number" name="mobile" #cn="ngModel" [(ngModel)]="mobile" pattern="^([+]\d{2}\s)?\d{10}$" maxlength="15" required>
+</mat-form-field>
+
+      <p *ngIf='cn.invalid' style="color: red">* please enter 10 digit</p>
+      <br>
+      <i class="fa fa-envelope" style="margin-right: 10px;font-size: 20px"></i>
+      <mat-form-field style="width:80%" class="form-group">
+        
+<input type="email" matInput placeholder="Enter Email Id" #ct="ngModel" class="form-control" name="email" pattern="^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$"  [(ngModel)]="email">
+
+        
+      </mat-form-field>
+       <p *ngIf='ct.invalid' style="color: red"> please enter valid email Id</p>
+      <br>
+      <i class="fa fa-lock" style="margin-right: 10px;font-size: 20px"></i>
+      <mat-form-field style="width:80%">
+  <input type="password" matInput placeholder="Enter Password" #cm="ngModel" pattern="^(?=.[a-z])(?=.[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$" name="password" required  id="txtpwd" [(ngModel)]="password" >
+      </mat-form-field>
+   <p *ngIf='cm.invalid' style="color: red"> please enter valid password</p>   
+      
+      <br>
+      <span style="font-size:20px"><i class="fa fa-address-card-o"></i></span> &nbsp; 
+    <mat-form-field  style="width:80%">
+      <textarea  matInput placeholder="Shipping Address" name="address" required [(ngModel)]="address" autocomplete="off" >  
+        </textarea>
+    </mat-form-field>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+          <button type="submit" class="btn btn-success " >Submit</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<router-outlet></router-outlet>

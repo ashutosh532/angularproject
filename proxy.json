@@ -1,0 +1,6 @@
+{
+    "/catref/*":{
+        "target":"http://localhost:1000",
+        "secure":true
+    }
+}
